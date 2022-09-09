@@ -8,7 +8,7 @@ function game() {
     console.log(`You played ${playerSelection} \nThe computer played ${computerSelection} \n${playRound(playerSelection, computerSelection)}`);
     if (playRound(playerSelection, computerSelection) === `You Win! ${playerSelection} beats ${computerSelection}`) 
     {
-      if (checkEndGame(playerWinCount)=== true) 
+      if (checkEndGame(playerWinCount) === true) 
       {
         return console.log(`Congratulations! You Won!`);
       } else {
