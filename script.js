@@ -122,5 +122,5 @@ function computerPlay() {
 }
 
 function checkEndGame(playerWinCount, computerWinCount) {
-  return playerWinCount === 3 || computerWinCount ===3;
+  return playerWinCount === 5 || computerWinCount ===5;
 }
