@@ -2,58 +2,76 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let playerSelection;
 let computerSelection;
-const buttons = document.querySelectorAll('button'); 
 
+const score = document.createElement('div');
+score.classList.add('score');
+
+const results = document.createElement('div');
+results.classList.add('results');
+
+const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', playRound);
 })
 
 function playRound(playerSelection, computerSelection) {
-    computerSelection = computerPlay();
-    playerSelection = event.target.id;
+  computerSelection = computerPlay();
+  playerSelection = event.target.id;
+  const content = document.querySelector('#container');
   if (checkEndGame(playerWinCount, computerWinCount)) {
       return;
   } else {
     if (playerSelection === computerSelection) {
-      return console.log(`You played ${playerSelection} \n
-                          The computer played ${computerSelection} \n
-                          The score is ${playerWinCount} - ${computerWinCount}. \n
-                          You tied! Replay the round.`);
+      results.textContent = `You played ${playerSelection}.
+                          The computer played ${computerSelection}.
+                          You tied! Replay the round.`;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
+      content.appendChild(results);
+      return content.appendChild(score)
     } else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || 
                (playerSelection === 'Paper' && computerSelection === 'Rock') || 
                (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
       playerWinCount++;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
       if (checkEndGame(playerWinCount) === true) {
-        document.querySelectorAll('button').disabled = true;
-        return console.log(`You played ${playerSelection} \n
-                            The computer played ${computerSelection} \n
-                            You Win! ${computerSelection} beats ${playerSelection} \n 
-                            The score is ${playerWinCount} - ${computerWinCount}. \n
-                            Congratulations! You Won!`);
+        results.textContent = `You played ${playerSelection}.
+                            The computer played ${computerSelection}.
+                            You Win! ${computerSelection} beats ${playerSelection}. 
+                            Congratulations! You Won!`;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
+      content.appendChild(results);
+      return content.appendChild(score)
       } else {
-        return console.log(`You played ${playerSelection} \n
-                            The computer played ${computerSelection} \n
-                            You Win! ${playerSelection} beats ${computerSelection} \n
-                            The score is ${playerWinCount} - ${computerWinCount}. \n
-                            Best of 5. Go again`);
+        results.textContent = `You played ${playerSelection}.
+                            The computer played ${computerSelection}.
+                            You Win! ${playerSelection} beats ${computerSelection}.
+                            Best of 5. Go again.`;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
+      content.appendChild(results);
+      return content.appendChild(score)
       }
     } else if ((playerSelection === 'Rock' && computerSelection === 'Paper') || 
                (playerSelection === 'Paper' && computerSelection === 'Scissors') || 
                (playerSelection === 'Scissors' && computerSelection === 'Rock')) {
       computerWinCount++;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
       if (checkEndGame(computerWinCount) === true) {
-        document.querySelectorAll('button').disabled = true;
-        return console.log(`You played ${playerSelection} \n
-                            The computer played ${computerSelection} \n
-                            You Lose! ${computerSelection} beats ${playerSelection} \n 
-                            The score is ${playerWinCount} - ${computerWinCount}. \n
-                            You lost the game. Better luck next time!`);
+        results.textContent = `You played ${playerSelection}.
+                            The computer played ${computerSelection}.
+                            You Lose! ${computerSelection} beats ${playerSelection}.
+                            You lost the game. Better luck next time!`;
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
+      content.appendChild(results);
+      return content.appendChild(score)
       } else {
-        return console.log(`You played ${playerSelection} \n
-                            The computer played ${computerSelection} \n
-                            You Lose! ${computerSelection} beats ${playerSelection} \n 
-                            The score is ${playerWinCount} - ${computerWinCount}. \n
-                            Best of 5. Go again`);
+        results.textContent = `You played ${playerSelection}. \n
+                            The computer played ${computerSelection}.
+                            You Lose! ${computerSelection} beats ${playerSelection}. 
+                            Best of 5. Go again.`;
+    
+      score.textContent = `The score is ${playerWinCount} - ${computerWinCount}.`;
+      content.appendChild(results);
+      return content.appendChild(score)
       }
     } else {
       return `Error. You must click Rock, Paper, or Scissors. Try again!`;
@@ -74,14 +92,4 @@ function computerPlay() {
 
 function checkEndGame(playerWinCount, computerWinCount) {
   return playerWinCount === 3 || computerWinCount ===3;
-}
-
-function capitalize(str) {
-  if (str === '' || str === null) {
-    return 'no entry';
-  } else {
-    let firstLetterCap = str.charAt(0).toUpperCase();
-    let lowerCase = str.substr(1).toLowerCase();
-    return firstLetterCap + lowerCase;
-  }
 }
