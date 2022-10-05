@@ -1,33 +1,4 @@
-function game() {
-  let playerWinCount;
-  let computerWinCount;
-  for (playerWinCount = 0, computerWinCount = 0; (playerWinCount + computerWinCount) < 5; ) { 
-    const playerSelection = capitalize(prompt('Choose one:   Rock    Paper   Scissors', '')); 
-    const computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
-    console.log(`You played ${playerSelection} \nThe computer played ${computerSelection} \n${playRound(playerSelection, computerSelection)}`);
-    if (playRound(playerSelection, computerSelection) === `You Win! ${playerSelection} beats ${computerSelection}`) 
-    {
-      if (checkEndGame(playerWinCount) === true) 
-      {
-        return console.log(`Congratulations! You Won!`);
-      } else {
-        playerWinCount++;
-        console.log(`The score is ${playerWinCount} - ${computerWinCount}. \nBest of 5. Go again`);
-      }
-    } else if (playRound(playerSelection, computerSelection) === `You Lose! ${computerSelection} beats ${playerSelection}`) {
-      if (checkEndGame(computerWinCount)) {
-        return console.log(`You lost the game. Better luck next time!`);
-      } else {
-        computerWinCount++;
-        console.log(`The score is ${playerWinCount} - ${computerWinCount}. \nBest of 5. Go again`);
-      }
-    } else {
-      console.log(`The score is ${playerWinCount} - ${computerWinCount}. \nBest of 5. Go again`);
-    }
-  }
-}
-=======
+
 let playerWinCount = 0;
 let computerWinCount = 0;
 let playerSelection;
@@ -43,7 +14,6 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', playRound);
 })
->>>>>>> rps-ui
 
 function playRound(playerSelection, computerSelection) {
   computerSelection = computerPlay();
