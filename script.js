@@ -17,7 +17,6 @@ buttons.forEach((button) => {
 
 function playRound(playerSelection, computerSelection) {
   computerSelection = computerPlay();
-  playerSelection = event.target.id;
   const content = document.querySelector('#container');
   if (checkEndGame(playerWinCount, computerWinCount)) {
       return;
