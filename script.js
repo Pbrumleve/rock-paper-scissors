@@ -12,7 +12,7 @@ results.classList.add('results');
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-  button.addEventListener('click', playRound);
+  button.addEventListener('click', playRound());
 })
 
 function playRound(playerSelection, computerSelection) {
